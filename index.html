@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nexus Gaming · Arma tu PC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090909;--card:#141210;--ink:#efe9dc;--mut:#a39a86;--line:#352c17;--gold:#d9a93c;--gold2:#f4d27a;--ok:#4cc28d;--warn:#ee8a3a;--err:#f0645a;--idle:#4a4130;--okbg:#10241a;--warnbg:#2c1c0d;--errbg:#2e1411;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:#090909}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:16px/1.5 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(900px 420px at 90% -5%,rgba(217,169,60,.14),transparent 70%),radial-gradient(700px 400px at -10% 100%,rgba(217,169,60,.08),transparent 70%),var(--bg)}
+.wrap{max-width:1320px;margin:0 auto;padding:24px 18px 48px}
+.top{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-start;margin-bottom:22px}
+.top>div:first-child{flex:1 1 380px}
+.brand{order:2;margin-left:auto;display:flex;align-items:center;gap:12px;text-align:right}
+@media(max-width:700px){.brand{order:-1}}
+.brand img{width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);flex:none}
+.bn,.bg{display:block;font:900 1.45rem/1.05 Orbitron,Eurostile,"Segoe UI",system-ui,sans-serif;letter-spacing:.05em;-webkit-background-clip:text;background-clip:text;color:transparent}
+.bn{background-image:linear-gradient(#f8dc86,#c68a1d 65%,#8a5a10)}
+.bg{background-image:linear-gradient(#eef3fa,#8d9db6)}
+.bs{display:block;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-top:3px}
+h1{font-size:clamp(1.8rem,4.5vw,2.7rem);line-height:1.05;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;color:var(--gold2)}
+.lead{color:var(--mut);margin:0;max-width:60ch}
+.grid{display:grid;grid-template-columns:310px 1fr 330px;gap:20px;align-items:start}
+@media(max-width:1100px){.grid{grid-template-columns:1fr}}
+.ph{font-size:1.05rem;margin:0 0 10px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+.bud,.rec,.pw,.checks li,.part,.verdict{background:var(--card);border:1px solid var(--line);border-radius:6px}
+.bud{padding:12px 14px;margin-bottom:12px}
+.bud label{display:block;font-weight:600;margin-bottom:6px}
+input[type=number],select{width:100%;font:inherit;color:var(--ink);background:#0d0c0b;border:1px solid var(--line);border-radius:6px;padding:9px 10px}
+.rec{border-top:3px solid var(--gold);padding:12px 14px;margin-bottom:12px}
+.rec h3{margin:0;font-size:.9rem;color:var(--gold2)}
+.price{font-size:1.5rem;font-weight:800}
+.rec ul{list-style:none;margin:8px 0;padding:0;font-size:.86rem}
+.rec li{margin-bottom:5px}
+.rec li span{display:block;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+.mut{color:var(--mut);font-size:.85rem}
+.over{color:var(--err)}.under{color:var(--ok)}
+.parts{display:grid;gap:10px}
+.part{border-left:6px solid var(--idle);padding:12px 14px}
+.part.ok{border-left-color:var(--ok)}.part.warn{border-left-color:var(--warn)}.part.err{border-left-color:var(--err)}
+.part label{display:block;font-weight:600;margin-bottom:6px}
+select:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.qty{margin-top:8px}
+.spec{color:var(--mut);font-size:.88rem;margin-top:6px;min-height:1.3em}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media(max-width:1100px){.side{position:static}}
+.verdict{padding:16px}
+.verdict.ok{background:var(--okbg);border-color:var(--ok)}.verdict.warn{background:var(--warnbg);border-color:var(--warn)}.verdict.err{background:var(--errbg);border-color:var(--err)}
+.verdict h2{margin:0 0 2px;font-size:1.3rem}
+.verdict p{margin:0;color:var(--mut);font-size:.92rem}
+.checks{list-style:none;margin:14px 0;padding:0;display:grid;gap:8px}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:8px;padding:9px 11px;font-size:.92rem}
+.checks b{display:block}
+.ic{font-weight:800;text-align:center}
+.checks .ok .ic{color:var(--ok)}.checks .warn .ic{color:var(--warn)}.checks .err .ic{color:var(--err)}
+.pw{padding:12px 14px;font-size:.92rem;margin-bottom:10px}
+.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .25s}
+.btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+button{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;padding:9px 14px;cursor:pointer}
+button.main{background:linear-gradient(#f4d27a,#c68a1d);color:#1a1205;border-color:#c68a1d}
+.rec button{width:100%}
+.note{color:var(--mut);font-size:.82rem;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div><h1>Arma tu PC y revisa que todo encaje</h1><p class="lead">Dime tu presupuesto y te sugiero configuraciones compatibles, o elige tú los componentes y comprueba socket, memoria, medidas y consumo.</p></div>
+<div class="brand"><div><b class="bn">NEXUS</b><b class="bg">GAMING</b><span class="bs">Técnico de PC · Soporte especializado</span></div><img src="data:image/jpeg;base64,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" alt="Logo de Nexus Gaming"></div></header>
+<div class="grid">
+<section><h2 class="ph">Recomendaciones</h2>
+<div class="bud"><label for="budget">Tu presupuesto (CLP)</label><input type="number" id="budget" min="0" step="10000" value="900000" inputmode="numeric"><div class="mut" style="margin-top:6px">Incluye un SSD de 1 TB referencial. Precios aproximados, no en vivo.</div></div>
+<div id="recs"></div></section>
+<div class="parts" id="parts"></div>
+<aside class="side">
+<div class="verdict" id="verdict"></div>
+<ul class="checks" id="checks"></ul>
+<div class="pw" id="pw"></div>
+<div class="pw" id="total"></div>
+<div class="btns"><button class="main" id="demo">Cargar ejemplo</button><button id="reset">Reiniciar</button></div>
+<p class="note">Datos de referencia de modelos habituales. Antes de comprar, confirma en la web del fabricante (versión de BIOS, medidas exactas y conectores) y el precio vigente.</p>
+</aside>
+</div>
+</div>
+<script>
+const ALL=["AM4","AM5","LGA1700","LGA1851"];
+const CPU=[["Ryzen 5 5600","AM4",65,0],["Ryzen 7 5800X3D","AM4",105,0],["Ryzen 5 7600","AM5",65,1],["Ryzen 7 7800X3D","AM5",120,1],["Core i5-12400F","LGA1700",65,0],["Core i5-14600K","LGA1700",125,1],["Core Ultra 7 265K","LGA1851",125,1]].map(([n,s,t,g])=>({n,s,t,g,d:s+" · "+t+" W"+(g?" · con gráficos integrados":" · sin gráficos integrados")}));
+const MB=[["B550 ATX","AM4","DDR4","ATX"],["B550M micro-ATX","AM4","DDR4","mATX"],["B650 ATX","AM5","DDR5","ATX"],["B650M micro-ATX","AM5","DDR5","mATX"],["B850I mini-ITX","AM5","DDR5","ITX"],["B760M micro-ATX","LGA1700","DDR4","mATX"],["Z790 ATX","LGA1700","DDR5","ATX"],["Z890 ATX","LGA1851","DDR5","ATX"]].map(([n,s,r,f])=>({n,s,r,f,sl:f==="ITX"?2:4,d:s+" · "+r+" · formato "+f+" · "+(f==="ITX"?2:4)+" ranuras de RAM"}));
+const RAM=[["16 GB DDR4-3200","DDR4"],["32 GB DDR4-3600","DDR4"],["16 GB DDR5-5600","DDR5"],["32 GB DDR5-6000","DDR5"]].map(([n,r])=>({n,r,gb:parseInt(n),d:r}));
+const GPU=[["GeForce RTX 4060",115,240],["Radeon RX 7600",165,204],["GeForce RTX 4070 Super",220,245],["Radeon RX 7800 XT",263,267],["GeForce RTX 4090",450,336]].map(([n,t,l])=>({n,t,l,d:t+" W · largo "+l+" mm"}));
+const COOL=[["Cooler Master Hyper 212",159,["AM4","AM5","LGA1700","LGA1851"]],["Thermalright Peerless Assassin 120",155,ALL],["Noctua NH-D15",165,ALL],["Noctua NH-L9a-AM5 (perfil bajo)",37,["AM4","AM5"]]].map(([n,h,s])=>({n,h,s,d:"altura "+h+" mm · "+s.join(", ")}));
+const PSU=[450,550,650,750,850,1000].map(w=>({n:w+" W",w,d:"Potencia nominal "+w+" W"}));
+const CASE=[["Caja mini-ITX compacta",["ITX"],300,70],["Caja micro-ATX",["mATX","ITX"],320,160],["Torre media ATX",["ATX","mATX","ITX"],360,165]].map(([n,f,g,c])=>({n,f,g,c,d:"Placas "+f.join("/")+" · GPU máx. "+g+" mm · cooler máx. "+c+" mm"}));
+const KEYS=[["cpu","Procesador",CPU],["mb","Placa base",MB],["ram","Memoria RAM (modelo del módulo y cantidad)",RAM],["gpu","Tarjeta gráfica",GPU],["cool","Disipador",COOL],["psu","Fuente de poder",PSU],["case","Caja",CASE]];
+const EXAMPLE={cpu:2,mb:3,ram:2,gpu:0,cool:1,psu:2,case:1};
+
+function check(s){
+  const g=k=>s[k]===undefined||s[k]===""||s[k]===null?null:KEYS.find(x=>x[0]===k)[2][s[k]];
+  const c=g("cpu"),m=g("mb"),r=g("ram"),v=g("gpu"),f=g("cool"),p=g("psu"),a=g("case"),q=+(s.qty||2);
+  const out=[],add=(st,t,msg,parts)=>out.push({st,t,msg,parts});
+  if(c&&m){c.s===m.s?add("ok","Socket",c.n+" y la placa usan "+c.s+".",["cpu","mb"]):add("err","Socket incompatible","El procesador usa "+c.s+" y la placa usa "+m.s+".",["cpu","mb"]);}
+  if(r&&m){r.r===m.r?add("ok","Tipo de memoria","Placa y RAM son "+m.r+".",["ram","mb"]):add("err","Memoria incompatible","La placa admite "+m.r+" y elegiste RAM "+r.r+".",["ram","mb"]);}
+  if(r&&m){q<=m.sl?add("ok","Ranuras de memoria","Usas "+q+" de "+m.sl+" ranuras.",["ram","mb"]):add("err","Faltan ranuras de RAM","Elegiste "+q+" módulos y la placa solo tiene "+m.sl+" ranuras.",["ram","mb"]);}
+  if(r){q===1?add("warn","Canal simple","Con un solo módulo la memoria trabaja en canal simple; dos módulos iguales dan más ancho de banda.",["ram"]):add("ok","Doble canal","Con "+q+" módulos la memoria trabaja en doble canal ("+q*r.gb+" GB en total).",["ram"]);}
+  if(m&&a){a.f.includes(m.f)?add("ok","Formato de placa","La caja admite placas "+m.f+".",["mb","case"]):add("err","La placa no cabe","La placa es "+m.f+" y la caja solo admite "+a.f.join("/")+".",["mb","case"]);}
+  if(v&&a){v.l<=a.g?add("ok","Largo de la gráfica","Sobran "+(a.g-v.l)+" mm en la caja.",["gpu","case"]):add("err","La gráfica no cabe","Mide "+v.l+" mm y la caja admite "+a.g+" mm.",["gpu","case"]);}
+  if(f&&a){f.h<=a.c?add("ok","Altura del disipador","Sobran "+(a.c-f.h)+" mm en la caja.",["cool","case"]):add("err","El disipador no cabe","Mide "+f.h+" mm y la caja admite "+a.c+" mm.",["cool","case"]);}
+  if(f&&c){f.s.includes(c.s)?add("ok","Disipador y socket","El disipador soporta "+c.s+".",["cool","cpu"]):add("err","Disipador sin soporte","No trae montaje para "+c.s+".",["cool","cpu"]);}
+  if(c&&!c.g&&!v)add("warn","Sin salida de video","Este procesador no tiene gráficos integrados; necesitas tarjeta gráfica.",["cpu","gpu"]);
+  let est=null;
+  if(c&&p){const gt=v?v.t:0;est=c.t+gt+100;const need=Math.ceil(est*1.3/10)*10;
+    if(p.w>=need)add("ok","Potencia de la fuente","Consumo estimado "+est+" W; recomendado "+need+" W. Tienes "+p.w+" W.",["psu","cpu","gpu"]);
+    else if(p.w>=est*1.1)add("warn","Fuente justa","Consumo estimado "+est+" W; recomendado "+need+" W. Con "+p.w+" W funciona pero con poco margen.",["psu","cpu","gpu"]);
+    else add("err","Fuente insuficiente","Consumo estimado "+est+" W y la fuente es de "+p.w+" W. Recomendado "+need+" W o más.",["psu","cpu","gpu"]);}
+  const n=KEYS.filter(k=>g(k[0])).length;
+  return {out,est,n,psu:p?p.w:null};
+}
+const PR={cpu:[105,270,180,380,115,275,320],mb:[105,85,160,135,220,105,210,250],ram:[35,65,50,95],gpu:[290,250,570,480,1700],cool:[35,40,105,57],psu:[45,58,72,90,115,150],case:[105,58,75]};
+const SC={cpu:[100,140,125,185,100,150,150],gpu:[100,95,170,160,330]},STORE=55000;
+function cost(s){let t=STORE;KEYS.forEach(([k])=>{if(s[k]!==""&&s[k]!==undefined)t+=PR[k][s[k]]*1000*(k==="ram"?+(s.qty||2):1)});return t}
+let VALID=null;
+function recommend(b){
+  if(!VALID){VALID=[];
+    CPU.forEach((c,ci)=>MB.forEach((m,mi)=>{if(m.s!==c.s)return;
+    RAM.forEach((r,ri)=>{if(r.r!==m.r)return;
+    CASE.forEach((a,ai)=>{if(!a.f.includes(m.f))return;
+    GPU.forEach((g,gi)=>{if(g.l>a.g)return;
+    COOL.forEach((f,fi)=>{if(f.h>a.c||!f.s.includes(c.s))return;
+    PSU.forEach((p,pi)=>{const s={cpu:ci,mb:mi,ram:ri,gpu:gi,cool:fi,psu:pi,case:ai,qty:"2"};
+      if(check(s).out.some(o=>o.st!=="ok"))return;
+      VALID.push({s,cost:cost(s),score:SC.gpu[gi]+SC.cpu[ci]*0.6});});});});});});}));
+    VALID.sort((x,y)=>y.score-x.score||x.cost-y.cost);}
+  const seen=new Set(),list=[];
+  for(const x of VALID){if(x.cost>b||seen.has(x.s.gpu))continue;seen.add(x.s.gpu);list.push(x);if(list.length===3)break;}
+  return {list,min:Math.min(...VALID.map(x=>x.cost))};
+}
+/*DOM*/
+const sel={qty:"2"},$=id=>document.getElementById(id);
+const IC={ok:"✓",warn:"!",err:"✕"};
+function build(){
+  $("parts").innerHTML=KEYS.map(([k,l,L])=>`<div class="part" id="p-${k}"><label for="s-${k}">${l}</label><select id="s-${k}"><option value="">Elegir…</option>${L.map((x,i)=>`<option value="${i}">${x.n}</option>`).join("")}</select>${k==="ram"?'<select id="q-ram" aria-label="Cantidad de módulos" class="qty"><option value="1">1 módulo</option><option value="2" selected>2 módulos</option><option value="4">4 módulos</option></select>':""}<div class="spec" id="d-${k}"></div></div>`).join("");
+  KEYS.forEach(([k])=>$("s-"+k).addEventListener("change",e=>{sel[k]=e.target.value;render()}));
+  $("q-ram").addEventListener("change",e=>{sel.qty=e.target.value;render()});
+}
+function render(){
+  const R=check(sel);showTotal();
+  KEYS.forEach(([k,,L])=>{
+    const el=$("p-"+k),rel=R.out.filter(o=>o.parts.includes(k));
+    el.className="part"+(sel[k]===""||sel[k]===undefined?"":rel.some(o=>o.st==="err")?" err":rel.some(o=>o.st==="warn")?" warn":rel.length?" ok":"");
+    $("d-"+k).textContent=sel[k]===""||sel[k]===undefined?"":k==="ram"?(+sel.qty)+" × "+L[sel[k]].gb+" GB = "+(+sel.qty*L[sel[k]].gb)+" GB · "+L[sel[k]].d:L[sel[k]].d;
+  });
+  const errs=R.out.filter(o=>o.st==="err").length,warns=R.out.filter(o=>o.st==="warn").length,done=R.n===KEYS.length;
+  let cls="",h="",t="";
+  if(errs){cls="err";h=errs+(errs>1?" incompatibilidades":" incompatibilidad");t="Corrige lo marcado en rojo antes de comprar.";}
+  else if(!R.n){h="Empieza eligiendo un componente";t="Las comprobaciones aparecen a medida que combinas piezas.";}
+  else if(!done){cls=warns?"warn":"";h="Faltan componentes ("+R.n+"/"+KEYS.length+")";t=warns?"Hay avisos; revisa los puntos en ámbar.":"Hasta ahora no hay problemas.";}
+  else if(warns){cls="warn";h="Compatible, con avisos";t="Todo encaja, pero revisa los puntos en ámbar.";}
+  else{cls="ok";h="Todo es compatible";t="Las "+R.out.length+" comprobaciones pasaron.";}
+  $("verdict").className="verdict "+cls;
+  $("verdict").innerHTML="<h2>"+h+"</h2><p>"+t+"</p>";
+  const order={err:0,warn:1,ok:2};
+  $("checks").innerHTML=R.out.slice().sort((a,b)=>order[a.st]-order[b.st]).map(o=>`<li class="${o.st}"><span class="ic">${IC[o.st]}</span><span><b>${o.t}</b>${o.msg}</span></li>`).join("");
+  if(R.est){const pct=Math.min(100,Math.round(R.est/R.psu*100));$("pw").innerHTML="Consumo estimado: <b>"+R.est+" W</b> de "+R.psu+" W ("+pct+"%)<div class='bar'><i style='width:"+pct+"%;background:"+(pct>77?"var(--warn)":"var(--ok)")+"'></i></div><span style='color:var(--mut)'>Estimación: procesador + gráfica + 100 W para el resto, con 30 % de margen.</span>";}
+  else $("pw").innerHTML="<span style='color:var(--mut)'>Elige procesador y fuente para estimar el consumo.</span>";
+}
+$("demo").onclick=()=>{KEYS.forEach(([k])=>{sel[k]=String(EXAMPLE[k]);$("s-"+k).value=sel[k]});sel.qty="2";$("q-ram").value="2";render()};
+$("reset").onclick=()=>{KEYS.forEach(([k])=>{sel[k]="";$("s-"+k).value=""});sel.qty="2";$("q-ram").value="2";render()};
+const M=n=>"$"+Math.round(n).toLocaleString("es-CL");
+function showTotal(){
+  const n=KEYS.filter(([k])=>sel[k]!==""&&sel[k]!==undefined).length,el=$("total");
+  if(!n){el.style.display="none";return}
+  el.style.display="";const t=cost(sel),b=+$("budget").value;
+  let x="Costo estimado: <b>"+M(t)+"</b> <span class='mut'>(incluye SSD de 1 TB)</span>";
+  if(b>0)x+=t>b?"<br><span class='over'>Supera tu presupuesto por "+M(t-b)+"</span>":"<br><span class='under'>Dentro de tu presupuesto; sobran "+M(b-t)+"</span>";
+  el.innerHTML=x;
+}
+function showRecs(){
+  const b=+$("budget").value,box=$("recs");
+  if(!(b>0)){box.innerHTML="<p class='mut'>Escribe un presupuesto para ver recomendaciones.</p>";showTotal();return}
+  const r=recommend(b);
+  if(!r.list.length){box.innerHTML="<p class='mut'>Con "+M(b)+" no alcanza para una configuración compatible. El mínimo en este catálogo es "+M(r.min)+".</p>";showTotal();return}
+  box.innerHTML=r.list.map((x,i)=>`<div class="rec"><h3>Opción ${i+1}${i===0?" · mejor rendimiento":""}</h3><div class="price">${M(x.cost)}</div><ul>${KEYS.map(([k,l,L])=>`<li><span>${l.split(" (")[0]}</span>${k==="ram"?x.s.qty+" × ":""}${L[x.s[k]].n}</li>`).join("")}</ul><div class="mut">Sobran ${M(b-x.cost)}</div><button class="main" data-i="${i}">Cargar en el armador</button></div>`).join("");
+  box.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{const s=r.list[bt.dataset.i].s;KEYS.forEach(([k])=>{sel[k]=String(s[k]);$("s-"+k).value=sel[k]});sel.qty=s.qty;$("q-ram").value=s.qty;render()});
+  showTotal();
+}
+$("budget").addEventListener("input",showRecs);
+build();render();showRecs();
+</script>
+</body>
+</html>
